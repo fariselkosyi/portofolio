@@ -1,0 +1,17 @@
+-- Source : https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales
+--
+
+--how many total product was bought by gender
+SELECT gender, SUM(quantity) AS TotalByGender
+FROM supermarket_salesSheet1
+GROUP BY gender;
+
+--how many percetage between Male and Female according to table
+SELECT gender, COUNT(*) AS jumlah, (COUNT(*) * 100.0 / (SELECT COUNT(*) FROM supermarket_salesSheet1)) AS persentase
+FROM supermarket_salesSheet1
+GROUP BY gender;
+
+--How many total quantity product according type product (product_line)
+SELECT product_line, SUM(quantity) as TotalProduct
+FROM supermarket_salesSheet1
+GROUP BY product_line;
