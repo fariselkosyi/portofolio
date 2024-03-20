@@ -15,3 +15,13 @@ GROUP BY gender;
 SELECT product_line, SUM(quantity) as TotalProduct
 FROM supermarket_salesSheet1
 GROUP BY product_line;
+
+--How much income based on City
+ SELECT city, sum(total) as total_income
+ FROM supermarket_salesSheet1
+ GROUP By city;
+
+--Checking on maximum and minimum quantity product already sale
+SELECT City, MAX(quantity) AS maximumquantity, (MIN(quantity)) AS minimumquantity
+From supermarket_salesSheet1
+GROUP by City;
