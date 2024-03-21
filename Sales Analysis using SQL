@@ -1,5 +1,6 @@
--- Source : https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales
---
+--Dataset: supermarket Sales
+--Source: https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales
+--Queried using: SQLite 3
 
 --how many total product was bought by gender
 SELECT gender, SUM(quantity) AS TotalByGender
@@ -25,3 +26,29 @@ GROUP BY product_line;
 SELECT City, MAX(quantity) AS maximumquantity, (MIN(quantity)) AS minimumquantity
 From supermarket_salesSheet1
 GROUP by City;
+
+--Which product are best selling
+SELECT product_line, SUM(quantity) AS TotalQuantity
+FROM supermarket_salesSheet1
+GROUP BY product_line
+Order by TotalQuantity DESC
+LIMIT 1;
+
+--How much avarage revenue based on each branch?
+SELECT branch, avg(total) as Total_Revenue
+From supermarket_salesSheet1NEW
+Group by branch;
+
+--What is relation between branch and product that sold?
+SELECT branch, product_line, SUM(quantity) AS Total_Selling
+FROM supermarket_salesSheet1NEW
+GROUP BY branch, product_line
+ORDER BY Total_Selling DESC;
+
+--Check Repeat buyer (Loyal Consument)
+SELECT branch, invoice_id, COUNT(*) AS Amount_of_transaction
+from supermarket_salesSheet1NEW
+GROUP by branch, invoice_id
+HAVING Amount_of_transaction > 1
+ORDER by Amount_of_transaction DESC;
+
