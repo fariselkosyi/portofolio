@@ -52,3 +52,12 @@ GROUP by branch, invoice_id
 HAVING Amount_of_transaction > 1
 ORDER by Amount_of_transaction DESC;
 
+--Check range price between product
+SELECT product_line,
+	MIN(unit_price) AS Minimum_Price,
+    MAX(unit_price) AS Maximum_price,
+    AVG(unit_price) AS Average_price
+FROM supermarket_salesSheet1NEW
+GROUP BY product_line;
+
+
